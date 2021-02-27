@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 // Controllers
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RecipesController;
+use App\Http\Controllers\ShoppingListsController;
 
 // Authentication
 Route::get('login', [AuthController::class, 'login'])->name('login');
@@ -28,5 +29,6 @@ Route::middleware(['auth'])->group(function() {
 
     Route::prefix('shopping-lists')->group(function() {
         Route::get('/', [ShoppingListsController::class, 'index'])->name('shopping_lists');
+        Route::get('/{shoppingList}', [ShoppingListsController::class, 'show'])->name('shopping_list_view');
     });
 });

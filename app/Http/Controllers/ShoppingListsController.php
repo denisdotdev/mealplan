@@ -13,6 +13,7 @@ class ShoppingListsController extends Controller
 
     public function show()
     {
+
     }
 
     public function create()
