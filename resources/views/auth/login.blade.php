@@ -12,17 +12,28 @@
             @csrf
             <div class="field">
                 <label for="" class="field">Email</label>
-                <div class="control">
+                <div class="control has-icons-left">
                     <input type="email" class="input" placeholder="you@meaplan.com">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-envelope"></i>
+                    </span>
                 </div>
             </div>
 
             <div class="field">
                 <label for="" class="field">Password</label>
-                <div class="control">
-                    <input type="password" class="input">
+                <div class="control has-icons-left">
+                    <input type="password" class="input" placeholder="Password">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                    </span>
                 </div>
             </div>
+
+            <label class="checkbox">
+                <input type="checkbox">
+                Remember me
+            </label>
 
             <div class="field">
                 <div class="control">

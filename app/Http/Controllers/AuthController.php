@@ -44,4 +44,14 @@ class AuthController extends Controller
     {
         return view('auth.setup');
     }
+
+    public function setup_post(Request $request): \Illuminate\Http\RedirectResponse
+    {
+        $request->validate([
+            'language' => 'required',
+            'themeColor' => ''
+        ]);
+
+        return redirect()->intended('dashboard');
+    }
 }
