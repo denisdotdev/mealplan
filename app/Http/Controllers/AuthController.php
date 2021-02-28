@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -42,16 +44,38 @@ class AuthController extends Controller
 
     public function setup()
     {
+        if (User::all()->count() > 0)
+        {
+            return redirect()->intended('dashboard');
+        }
+
         return view('auth.setup');
     }
 
     public function setup_post(Request $request): \Illuminate\Http\RedirectResponse
     {
+        if (User::all()->count() > 0)
+        {
+            return redirect()->intended('dashboard');
+        }
+
         $request->validate([
             'language' => 'required',
-            'themeColor' => ''
+            'email' => 'required',
+            'password' => 'required|confirmed'
         ]);
 
-        return redirect()->intended('dashboard');
+        $user = new User;
+        $user->email = $request->email;
+        $user->name = 'Admin';
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended('dashboard');
+        }
     }
 }

@@ -19,7 +19,7 @@ Route::post('setup', [AuthController::class, 'setup_post'])->name('setup_post');
 Route::middleware(['auth'])->group(function() {
     Route::get('/', function () {
         return view('index');
-    });
+    })->name('dashboard');
 
     Route::prefix('recipes')->group(function() {
         Route::get('/', [RecipesController::class, 'index'])->name('recipes');
