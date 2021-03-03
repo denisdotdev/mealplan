@@ -13,31 +13,39 @@
             <div class="field">
                 <label for="" class="field">Email</label>
                 <div class="control has-icons-left">
-                    <input type="email" class="input" placeholder="you@meaplan.com">
+                    <input type="email" name="email" class="input @error('email') is-danger @enderror" placeholder="you@meaplan.com">
                     <span class="icon is-small is-left">
                         <i class="fas fa-envelope"></i>
                     </span>
                 </div>
+
+                @error('email')
+                    <p class="help is-danger">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="field">
                 <label for="" class="field">Password</label>
                 <div class="control has-icons-left">
-                    <input type="password" class="input" placeholder="Password">
+                    <input type="password" name="password" class="input @error('password') is-danger @enderror" placeholder="Password">
                     <span class="icon is-small is-left">
                         <i class="fas fa-lock"></i>
                     </span>
                 </div>
+
+                @error('password')
+                    <p class="help is-danger">{{ $message }}</p>
+                @enderror
             </div>
 
             <label class="checkbox">
-                <input type="checkbox">
+                <input type="checkbox" name="remember_me">
                 Remember me
             </label>
 
             <div class="field">
                 <div class="control">
-                    <button class="button is-link">Submit</button>
+                    <button class="button is-link">Login</button>
                 </div>
             </div>
         </form>

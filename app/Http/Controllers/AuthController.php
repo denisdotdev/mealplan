@@ -36,12 +36,6 @@ class AuthController extends Controller
         ]);
     }
 
-    // @TODO: Determine how we handle registration
-    public function register()
-    {
-        return view('auth.register');
-    }
-
     public function setup()
     {
         if (User::all()->count() > 0)
@@ -77,5 +71,17 @@ class AuthController extends Controller
             $request->session()->regenerate();
             return redirect()->intended('dashboard');
         }
+
+        return redirect()->back();
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }

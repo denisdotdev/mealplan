@@ -23,7 +23,7 @@ class RecipesController extends Controller
         return view('recipes.create');
     }
 
-    public function store(Request $request)
+    public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
         $request->validate([
             'name' => 'required'
@@ -33,17 +33,28 @@ class RecipesController extends Controller
         $recipe->name = $request->name;
         $recipe->recipeImage = optional($request->file('recipeImage'))->store('recipes');
         $recipe->save();
+
+        return redirect()->intended('recipes');
     }
 
-    public function edit()
+    public function edit(Recipe $recipe)
     {
-        return view('recipes.edit');
+        return view('recipes.edit', ['recipe' => $recipe]);
     }
 
-    public function update(Request $request)
+    public function update(Request $request, Recipe $recipe)
     {
         $request->validate([
 
         ]);
+    }
+
+    public function destroy(Recipe $recipe)
+    {
+        try {
+            $recipe->delete();
+        } catch (\Exception $e) {
+
+        }
     }
 }

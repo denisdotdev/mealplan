@@ -9,7 +9,7 @@ class ShoppingListsController extends Controller
 {
     public function index()
     {
-
+        return view('shopping_lists.index');
     }
 
     public function show(ShoppingList $shoppingList)
@@ -30,5 +30,28 @@ class ShoppingListsController extends Controller
 
         $shoppingList = new ShoppingList;
         $shoppingList->save();
+    }
+
+    public function edit()
+    {
+        return view('shopping_lists.edit');
+    }
+
+    public function update(Request $request, ShoppingList $shoppingList)
+    {
+        $request->validate([
+
+        ]);
+
+        $shoppingList->save();
+    }
+
+    public function destroy(ShoppingList $shoppingList)
+    {
+        try {
+            $shoppingList->delete();
+        } catch (\Exception $e) {
+
+        }
     }
 }

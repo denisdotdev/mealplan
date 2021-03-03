@@ -11,6 +11,7 @@ use App\Http\Controllers\ShoppingListsController;
 Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::post('login', [AuthController::class, 'login_post'])->name('login_post');
 Route::get('register', [AuthController::class, 'register'])->name('register');
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 // Before anything can happen, the user has to setup the application!
 Route::get('setup', [AuthController::class, 'setup'])->name('setup');

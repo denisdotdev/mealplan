@@ -7,12 +7,46 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
-    <section class="section">
-        <div class="container">
-            <h1 class="title">Hello</h1>
-        </div>
-    </section>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="{{ route('dashboard') }}">
+                <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+            </a>
 
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="{{ route('recipes') }}">
+                    {{ __('navigation.recipes') }}
+                </a>
+
+                <a class="navbar-item" href="{{ route('shopping_lists') }}">
+                    {{ __('navigation.shopping lists') }}
+                </a>
+            </div>
+
+            <div class="navbar-end">
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        {{ Auth::user()->name }}
+                    </a>
+
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="{{ route('logout') }}">
+                            {{ __('navigation.logout') }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </nav>
     @yield('content')
 </body>
 </html>
